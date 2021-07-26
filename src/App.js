@@ -5,6 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Provider } from "react-redux";
 import Header from "./components/Header/Header";
 import settings from "./settings.json";
+import ScreensInfluencerList from "./screens/Influencer/List";
 import store from "./store/store";
 
 const theme = createTheme({
@@ -18,6 +19,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header title={settings.header.title} />
+      <ScreensInfluencerList />
     </ThemeProvider>
   </Provider>
 );

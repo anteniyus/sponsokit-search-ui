@@ -1,5 +1,8 @@
 {
   "header": {
     "title": "Sponsokit Influencer Finder"
+  },
+  "searchForm": {
+    "submitButtonText": "Submit"
   }
 }
