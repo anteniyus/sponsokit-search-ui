@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     backgroundColor: theme.palette.background.default,
   },
+  title: {
+    color: theme.palette.text.primary,
+  },
 }));
 
 const Header = ({ title }) => {
@@ -23,7 +26,9 @@ const Header = ({ title }) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h6">{title}</Typography>
+          <Typography variant="h6" className={classes.title}>
+            {title}
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>
