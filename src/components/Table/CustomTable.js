@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -33,6 +33,10 @@ const CustomTable = ({ data, columns, onRowClick }) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  useEffect(() => {
+    setPage(0);
+  }, [data]);
 
   return (
     <Paper className={classes.root}>
