@@ -1,14 +1,8 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import CustomTable from "../../../components/Table/CustomTable";
 import SearchForm from "./SearchForm";
-
-const useStyles = makeStyles({
-  container: {
-    padding: "7px",
-  },
-});
+import Container from "../../../components/Card/Container";
 
 const columns = [
   { title: "Channel Name", key: "channel_name" },
@@ -17,14 +11,13 @@ const columns = [
 ];
 
 const InfluencerList = () => {
-  const classes = useStyles();
   const { influencers } = useSelector((state) => state.influencers);
 
   return (
-    <div className={classes.container}>
+    <Container>
       <SearchForm />
       <CustomTable data={influencers} columns={columns} />
-    </div>
+    </Container>
   );
 };
 
