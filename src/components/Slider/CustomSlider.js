@@ -16,10 +16,6 @@ const useStyles = makeStyles({
   },
 });
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 const CustomSlider = forwardRef((props, ref) => {
   const classes = useStyles();
   const [value, setValue] = React.useState([10, 20]);
@@ -30,15 +26,15 @@ const CustomSlider = forwardRef((props, ref) => {
 
   const scale = (x) => x ** 4 * 5;
 
+  const showRange = ` (Min: ${formatWithComma(
+    scale(value[0])
+  )} - Max: ${formatWithComma(scale(value[1]))})`;
+
   useImperativeHandle(ref, () => ({
     getValues() {
       return { min: scale(value[0]), max: scale(value[1]) };
     },
   }));
-
-  const showRange = ` (Min: ${formatWithComma(
-    scale(value[0])
-  )} - Max: ${formatWithComma(scale(value[1]))})`;
 
   return (
     <div className={classes.container}>
@@ -51,7 +47,6 @@ const CustomSlider = forwardRef((props, ref) => {
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
         scale={(x) => scale(x)}
         valueLabelFormat={(x) => formatWithComma(abbreviateNumber(x))}
         className={classes.slider}
