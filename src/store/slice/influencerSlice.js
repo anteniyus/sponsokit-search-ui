@@ -23,7 +23,7 @@ const influencerSlice = createSlice({
     },
     [getInfluencers.rejected]: (state, action) => {
       state.influencers = [];
-      state.error = action.payload;
+      state.error = action.payload.error;
       state.isLoading = false;
     },
   },
