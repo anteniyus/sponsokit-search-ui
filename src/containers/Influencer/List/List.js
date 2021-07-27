@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import CustomTable from "../../../components/Table/CustomTable";
 import SearchForm from "./SearchForm";
 import Container from "../../../components/Card/Container";
+import { formatWithComma } from "../../../utility/NumberUtility";
 
 const columns = [
   { title: "Channel Name", key: "channel_name" },
   { title: "Channel Display Name", key: "channel_display_name" },
   { title: "Media Count", key: "media_count" },
+  { title: "Follower Count", key: "follower_count", function: formatWithComma },
 ];
 
 const InfluencerList = () => {

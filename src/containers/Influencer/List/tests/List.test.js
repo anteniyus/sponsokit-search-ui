@@ -46,6 +46,7 @@ describe("Influencer List", () => {
     expect(screen.getByText("Channel Name")).toBeInTheDocument();
     expect(screen.getByText("Channel Display Name")).toBeInTheDocument();
     expect(screen.getByText("Media Count")).toBeInTheDocument();
+    expect(screen.getByText("Follower Count")).toBeInTheDocument();
   });
 
   test("Checks the application initiation dispatch", () => {

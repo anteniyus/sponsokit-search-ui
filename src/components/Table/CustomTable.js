@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { v4 as uuidv4 } from "uuid";
+import { isFunction } from "../../utility/Validator";
 
 const useStyles = makeStyles({
   root: {
@@ -38,6 +39,11 @@ const CustomTable = ({ data, columns, onRowClick }) => {
     setPage(0);
   }, [data]);
 
+  const drawColumns = (item, column) =>
+    isFunction(column.function)
+      ? column.function(item[column.key])
+      : item[column.key];
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -56,7 +62,7 @@ const CustomTable = ({ data, columns, onRowClick }) => {
                 <TableRow key={uuidv4()} onClick={() => onRowClick(item)} hover>
                   {columns.map((column) => (
                     <TableCell key={column.key} component="th" scope="row">
-                      {item[column.key]}
+                      {drawColumns(item, column)}
                     </TableCell>
                   ))}
                 </TableRow>
