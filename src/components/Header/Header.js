@@ -9,22 +9,30 @@ import { withTheme } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    display: "flex",
+    justifyContent: "center",
   },
   toolbar: {
     justifyContent: "center",
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: (props) =>
+      props.backgroundColor
+        ? props.backgroundColor
+        : theme.palette.background.default,
   },
   title: {
-    color: theme.palette.text.primary,
+    color: (props) => (props.color ? props.color : theme.palette.text.primary),
+  },
+  bar: {
+    width: (props) => props.width,
   },
 }));
 
-const Header = ({ title }) => {
-  const classes = useStyles();
+const Header = ({ title, width, backgroundColor, color }) => {
+  const classes = useStyles({ width, backgroundColor, color });
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.bar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" className={classes.title}>
             {title}
@@ -35,8 +43,17 @@ const Header = ({ title }) => {
   );
 };
 
+Header.defaultProps = {
+  width: "100%",
+  backgroundColor: null,
+  color: null,
+};
+
 Header.propTypes = {
   title: PropTypes.string.isRequired,
+  width: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default withTheme(Header);

@@ -1,5 +1,4 @@
 import React from "react";
-import { Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import CustomTable from "../../../components/Table/CustomTable";
@@ -24,7 +23,6 @@ const InfluencerList = () => {
   return (
     <div className={classes.container}>
       <SearchForm />
-      <Divider />
       <CustomTable data={influencers} columns={columns} />
     </div>
   );

@@ -1,20 +1,33 @@
 import React, { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { getInfluencers } from "../../../store/slice/influencerSlice";
 import settings from "../../../settings.json";
 import CustomSlider from "../../../components/Slider/CustomSlider";
+import Header from "../../../components/Header/Header";
+import { Colors } from "../../../constants/ColorPalette";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "space-between",
+    padding: "7px",
+    flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
     },
+  },
+  button: {
+    display: "flex",
+    alignItems: "center",
+  },
+  text: {
+    width: "320px",
+  },
+  container: {
+    marginBottom: theme.spacing(1),
   },
 }));
 
@@ -27,6 +40,7 @@ const SearchForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const sliderValues = sliderRef.current.getValues();
 
     dispatch(
@@ -43,24 +57,40 @@ const SearchForm = () => {
   const handleInputChange = (event) => setInputValue(event.target.value);
 
   return (
-    <form
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        id="text-field"
-        label="Text Field"
-        onChange={handleInputChange}
+    <Card className={classes.container}>
+      <Header
+        title={settings.searchForm.headerText}
+        width="90%"
+        backgroundColor={Colors.DARK_GREEN}
+        color={Colors.WHITE}
       />
+      <form
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          id="text-field"
+          label="Text Field"
+          onChange={handleInputChange}
+          className={classes.text}
+        />
 
-      <CustomSlider ref={sliderRef} />
+        <CustomSlider ref={sliderRef} />
 
-      <Button variant="contained" color="primary" size="small" type="submit">
-        {settings.searchForm.submitButtonText}
-      </Button>
-    </form>
+        <div className={classes.button}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            type="submit"
+          >
+            {settings.searchForm.submitButtonText}
+          </Button>
+        </div>
+      </form>
+    </Card>
   );
 };
 

@@ -7,10 +7,17 @@ import Header from "./components/Header/Header";
 import settings from "./settings.json";
 import ScreensInfluencerList from "./screens/Influencer/List";
 import store from "./store/store";
+import { Colors } from "./constants/ColorPalette";
 
 const theme = createTheme({
   palette: {
-    type: "dark",
+    type: "light",
+    primary: {
+      main: "#416673",
+    },
+  },
+  typography: {
+    fontSize: 12,
   },
 });
 
@@ -18,7 +25,11 @@ const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header title={settings.header.title} />
+      <Header
+        title={settings.header.title}
+        backgroundColor={Colors.LIGHT_GREEN}
+        color={Colors.WHITE}
+      />
       <ScreensInfluencerList />
     </ThemeProvider>
   </Provider>

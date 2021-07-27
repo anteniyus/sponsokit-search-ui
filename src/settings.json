@@ -3,6 +3,7 @@
     "title": "Sponsokit Influencer Finder"
   },
   "searchForm": {
-    "submitButtonText": "Submit"
+    "submitButtonText": "Submit",
+    "headerText": "Search Form"
   }
 }
