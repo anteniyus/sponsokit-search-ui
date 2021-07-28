@@ -39,7 +39,7 @@ describe("Influencer Slice", () => {
     expect(state).toEqual({
       influencers: [],
       isLoading: false,
-      error: "some error",
+      error: { error: "some error" },
     });
   });
 });
