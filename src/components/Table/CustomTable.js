@@ -11,6 +11,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { v4 as uuidv4 } from "uuid";
 import { isFunction } from "../../utility/Validator";
+import { Colors } from "../../constants/ColorPalette";
 
 const useStyles = makeStyles({
   root: {
@@ -18,6 +19,12 @@ const useStyles = makeStyles({
   },
   container: {
     maxHeight: 440,
+  },
+  tableRow: {
+    "&:hover": {
+      backgroundColor: () => `${Colors.SHINE_GREEN} !important`,
+      cursor: "pointer",
+    },
   },
 });
 
@@ -47,7 +54,7 @@ const CustomTable = ({ data, columns, onRowClick }) => {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader aria-label="influencer table" size="small">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -59,7 +66,12 @@ const CustomTable = ({ data, columns, onRowClick }) => {
             {data
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item) => (
-                <TableRow key={uuidv4()} onClick={() => onRowClick(item)} hover>
+                <TableRow
+                  key={uuidv4()}
+                  onClick={() => onRowClick(item)}
+                  hover
+                  className={classes.tableRow}
+                >
                   {columns.map((column) => (
                     <TableCell key={column.key} component="th" scope="row">
                       {drawColumns(item, column)}
