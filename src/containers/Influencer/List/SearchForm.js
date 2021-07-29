@@ -35,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchForm = () => {
   const classes = useStyles();
+
   const { isLoading } = useSelector((state) => state.influencers);
   const [inputValue, setInputValue] = useState();
   const dispatch = useDispatch();
-
   const sliderRef = useRef();
 
   const handleSubmit = (event) => {
@@ -59,6 +59,9 @@ const SearchForm = () => {
 
   const handleInputChange = (event) => setInputValue(event.target.value);
 
+  // For reaching million in slider
+  const scale = (x) => x ** 4 * 5;
+
   return (
     <Card className={classes.container}>
       <Header
@@ -67,6 +70,7 @@ const SearchForm = () => {
         backgroundColor={Colors.DARK_GREEN}
         color={Colors.WHITE}
       />
+
       <form
         className={classes.root}
         noValidate
@@ -80,7 +84,11 @@ const SearchForm = () => {
           className={classes.text}
         />
 
-        <CustomSlider ref={sliderRef} />
+        <CustomSlider
+          ref={sliderRef}
+          scale={scale}
+          title={settings.searchForm.sliderText}
+        />
 
         <div className={classes.button}>
           <Button

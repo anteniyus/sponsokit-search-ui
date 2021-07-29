@@ -1,3 +1,4 @@
+// Magical formula taken from a stackoverflow post
 export const abbreviateNumber = (val) => {
   let newValue = val;
   if (val >= 1000) {
@@ -19,5 +20,6 @@ export const abbreviateNumber = (val) => {
   return newValue;
 };
 
+// Taken from a stackoverflow post
 export const formatWithComma = (x) =>
   x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

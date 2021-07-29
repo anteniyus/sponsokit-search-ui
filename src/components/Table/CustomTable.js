@@ -30,6 +30,7 @@ const useStyles = makeStyles({
 
 const CustomTable = ({ data, columns, onRowClick }) => {
   const classes = useStyles();
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -42,14 +43,14 @@ const CustomTable = ({ data, columns, onRowClick }) => {
     setPage(0);
   };
 
-  useEffect(() => {
-    setPage(0);
-  }, [data]);
-
   const drawColumns = (item, column) =>
     isFunction(column.function)
       ? column.function(item[column.key])
       : item[column.key];
+
+  useEffect(() => {
+    setPage(0);
+  }, [data]);
 
   return (
     <Paper className={classes.root}>
@@ -62,6 +63,7 @@ const CustomTable = ({ data, columns, onRowClick }) => {
               ))}
             </TableRow>
           </TableHead>
+
           <TableBody>
             {data
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -82,12 +84,13 @@ const CustomTable = ({ data, columns, onRowClick }) => {
           </TableBody>
         </Table>
       </TableContainer>
+
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={data.length}
         rowsPerPage={rowsPerPage}
-        page={data.length ? page : 0}
+        page={data.length ? page : 0} // NOTE: because table pagination will be called before useEffect to set the page to zero, handle the situation here
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
@@ -107,6 +110,7 @@ CustomTable.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       key: PropTypes.string.isRequired,
+      function: PropTypes.func,
     })
   ).isRequired,
 };

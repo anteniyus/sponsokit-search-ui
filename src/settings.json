@@ -4,6 +4,7 @@
   },
   "searchForm": {
     "submitButtonText": "Submit",
-    "headerText": "Search Form"
+    "headerText": "Search Form",
+    "sliderText": "Count range"
   }
 }

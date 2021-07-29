@@ -22,19 +22,19 @@ const InfluencerList = () => {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (error)
-      enqueueSnackbar(error, {
-        variant: "error",
-      });
-  }, [error]);
-
   const handleOpen = (influencerData) => {
     setOpen(true);
     dispatch(setInfluencerViewData(influencerData));
   };
 
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    if (error)
+      enqueueSnackbar(error, {
+        variant: "error",
+      });
+  }, [error]);
 
   return (
     <Container>

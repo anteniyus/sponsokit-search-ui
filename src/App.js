@@ -13,11 +13,13 @@ const App = () => (
   <Provider store={store}>
     <AppTheme>
       <CssBaseline />
+
       <Header
         title={settings.header.title}
         backgroundColor={Colors.LIGHT_GREEN}
         color={Colors.WHITE}
       />
+
       <ScreensRoot />
     </AppTheme>
   </Provider>
