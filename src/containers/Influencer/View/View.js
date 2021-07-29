@@ -1,9 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Divider, Hidden } from "@material-ui/core";
+import { useSelector } from "react-redux";
 import SectionCount from "./Sections/SectionCount";
 import SectionInfo from "./Sections/SectionInfo";
 import SectionBiography from "./Sections/SectionBiography";
@@ -30,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InfluencerView = ({ data }) => {
+const InfluencerView = () => {
   const classes = useStyles();
+
+  const { data } = useSelector((state) => state.influencerView);
 
   return (
     <Card className={classes.root}>
@@ -61,10 +63,6 @@ const InfluencerView = ({ data }) => {
       </CardContent>
     </Card>
   );
-};
-
-InfluencerView.propTypes = {
-  data: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default InfluencerView;

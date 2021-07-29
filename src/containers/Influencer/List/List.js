@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CustomTable from "../../../components/Table/CustomTable";
 import SearchForm from "./SearchForm";
 import Container from "../../../components/Card/Container";
 import { formatWithComma } from "../../../utility/NumberUtility";
 import CustomDialog from "../../../components/Dialog/CustomDialog";
 import InfluencerView from "../View/View";
+import { setInfluencerViewData } from "../../../store/slice/InfluencerViewSlice";
 
 const columns = [
   { title: "Channel Display Name", key: "channel_display_name" },
@@ -17,17 +18,18 @@ const columns = [
 const InfluencerList = () => {
   const { influencers } = useSelector((state) => state.influencers);
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState({});
+  const dispatch = useDispatch();
 
   const handleOpen = (influencerData) => {
     setOpen(true);
-    setData(influencerData);
+    dispatch(setInfluencerViewData(influencerData));
   };
   const handleClose = () => setOpen(false);
 
   return (
     <Container>
       <SearchForm />
+
       <CustomTable
         data={influencers}
         columns={columns}
@@ -35,7 +37,7 @@ const InfluencerList = () => {
       />
 
       <CustomDialog onClose={handleClose} open={open}>
-        <InfluencerView data={data} />
+        <InfluencerView />
       </CustomDialog>
     </Container>
   );
