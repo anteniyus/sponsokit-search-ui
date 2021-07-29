@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar, withSnackbar } from "notistack";
 import CustomTable from "../../../components/Table/CustomTable";
 import SearchForm from "./SearchForm";
 import Container from "../../../components/Card/Container";
@@ -16,14 +17,23 @@ const columns = [
 ];
 
 const InfluencerList = () => {
-  const { influencers } = useSelector((state) => state.influencers);
+  const { influencers, error } = useSelector((state) => state.influencers);
   const [open, setOpen] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error)
+      enqueueSnackbar(error, {
+        variant: "error",
+      });
+  }, [error]);
 
   const handleOpen = (influencerData) => {
     setOpen(true);
     dispatch(setInfluencerViewData(influencerData));
   };
+
   const handleClose = () => setOpen(false);
 
   return (
@@ -43,4 +53,4 @@ const InfluencerList = () => {
   );
 };
 
-export default InfluencerList;
+export default withSnackbar(InfluencerList);

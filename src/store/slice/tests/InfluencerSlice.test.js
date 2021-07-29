@@ -32,14 +32,14 @@ describe("Influencer Slice", () => {
   test("Checks the loading false and the error when getInfluencers is rejected", () => {
     const action = {
       type: getInfluencers.rejected.type,
-      payload: { error: "some error" },
+      error: { message: "some error" },
     };
     const state = influencerReducer(initialState, action);
 
     expect(state).toEqual({
       influencers: [],
       isLoading: false,
-      error: { error: "some error" },
+      error: "some error",
     });
   });
 });

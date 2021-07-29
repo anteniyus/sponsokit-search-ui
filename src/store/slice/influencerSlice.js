@@ -17,6 +17,7 @@ const influencerSlice = createSlice({
     [getInfluencers.pending]: (state) => {
       state.isLoading = true;
       state.influencers = [];
+      state.error = null;
     },
     [getInfluencers.fulfilled]: (state, action) => {
       state.influencers = action.payload;
@@ -24,7 +25,7 @@ const influencerSlice = createSlice({
     },
     [getInfluencers.rejected]: (state, action) => {
       state.influencers = [];
-      state.error = action.payload;
+      state.error = action.error?.message;
       state.isLoading = false;
     },
   },
