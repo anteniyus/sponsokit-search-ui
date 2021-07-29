@@ -1,4 +1,4 @@
-import influencerSlice, { getInfluencers } from "../influencerSlice";
+import influencerReducer, { getInfluencers } from "../influencerSlice";
 import data from "../../../utility/tests/TestData";
 
 const initialState = {
@@ -9,12 +9,12 @@ const initialState = {
 
 describe("Influencer Slice", () => {
   test("Checks the initial state", () => {
-    expect(influencerSlice.reducer(undefined, {})).toEqual(initialState);
+    expect(influencerReducer(undefined, {})).toEqual(initialState);
   });
 
   test("Checks the loading true when getInfluencers is pending", () => {
     const action = { type: getInfluencers.pending.type };
-    const state = influencerSlice.reducer(initialState, action);
+    const state = influencerReducer(initialState, action);
 
     expect(state).toEqual({ influencers: [], isLoading: true, error: null });
   });
@@ -24,7 +24,7 @@ describe("Influencer Slice", () => {
       type: getInfluencers.fulfilled.type,
       payload: data,
     };
-    const state = influencerSlice.reducer(initialState, action);
+    const state = influencerReducer(initialState, action);
 
     expect(state).toEqual({ influencers: data, isLoading: false, error: null });
   });
@@ -34,7 +34,7 @@ describe("Influencer Slice", () => {
       type: getInfluencers.rejected.type,
       payload: { error: "some error" },
     };
-    const state = influencerSlice.reducer(initialState, action);
+    const state = influencerReducer(initialState, action);
 
     expect(state).toEqual({
       influencers: [],
