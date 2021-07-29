@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Colors } from "./constants/ColorPalette";
 
 const AppTheme = ({ children }) => {
   const theme = createTheme({
     palette: {
       type: "light",
       primary: {
-        main: "#416673",
+        main: Colors.DARK_GREEN,
+      },
+      secondary: {
+        main: Colors.LIGHT_GREEN,
       },
     },
     typography: {

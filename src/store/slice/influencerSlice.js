@@ -16,6 +16,7 @@ const influencerSlice = createSlice({
   extraReducers: {
     [getInfluencers.pending]: (state) => {
       state.isLoading = true;
+      state.influencers = [];
     },
     [getInfluencers.fulfilled]: (state, action) => {
       state.influencers = action.payload;

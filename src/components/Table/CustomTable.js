@@ -87,7 +87,7 @@ const CustomTable = ({ data, columns, onRowClick }) => {
         component="div"
         count={data.length}
         rowsPerPage={rowsPerPage}
-        page={page}
+        page={data.length ? page : 0}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />

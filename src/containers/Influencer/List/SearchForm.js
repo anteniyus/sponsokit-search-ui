@@ -2,12 +2,14 @@ import React, { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Button, Card } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SendIcon from "@material-ui/icons/Send";
 import { getInfluencers } from "../../../store/slice/influencerSlice";
 import settings from "../../../settings.json";
 import CustomSlider from "../../../components/Slider/CustomSlider";
 import Header from "../../../components/Header/Header";
 import { Colors } from "../../../constants/ColorPalette";
+import CircularIndeterminate from "../../../components/Loading/CircularIndeterminate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchForm = () => {
   const classes = useStyles();
+  const { isLoading } = useSelector((state) => state.influencers);
   const [inputValue, setInputValue] = useState();
   const dispatch = useDispatch();
 
@@ -85,6 +88,8 @@ const SearchForm = () => {
             color="primary"
             size="small"
             type="submit"
+            endIcon={isLoading ? <CircularIndeterminate /> : <SendIcon />}
+            disabled={isLoading}
           >
             {settings.searchForm.submitButtonText}
           </Button>
