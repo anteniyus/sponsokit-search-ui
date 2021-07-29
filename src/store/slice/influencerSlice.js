@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GetInfluencers } from "../../containers/Influencer/service/InfluencerService";
 
-export const getInfluencers = createAsyncThunk("characters", (data) =>
+export const getInfluencers = createAsyncThunk("influencers", (data) =>
   GetInfluencers(data)
 );
 
 const influencerSlice = createSlice({
-  name: "characters",
+  name: "influencers",
   initialState: {
     influencers: [],
     isLoading: false,
@@ -29,4 +29,4 @@ const influencerSlice = createSlice({
   },
 });
 
-export default influencerSlice;
+export default influencerSlice.reducer;
