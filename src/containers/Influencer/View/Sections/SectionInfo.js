@@ -4,11 +4,15 @@ import Typography from "@material-ui/core/Typography";
 
 const SectionInfo = ({ channelDisplayName, channelName }) => (
   <div>
-    <Typography component="h5" variant="h5">
+    <Typography component="h5" variant="h5" data-testid="ch-dis-name-testid">
       {channelDisplayName}
     </Typography>
-    <Typography variant="subtitle1" color="textSecondary">
-      {`@${channelName}`}
+    <Typography
+      variant="subtitle1"
+      color="textSecondary"
+      data-testid="ch-name-testid"
+    >
+      {`@${channelName || ""}`}
     </Typography>
   </div>
 );
