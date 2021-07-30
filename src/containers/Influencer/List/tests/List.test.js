@@ -4,13 +4,18 @@ import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 import AppTheme from "../../../../AppTheme";
 import List from "../List";
+import store from "../../../../store/store";
+import { GetInfluencers } from "../../service/InfluencerService";
+import { data } from "../../../../utility/tests/TestData";
+import { getInfluencers } from "../../../../store/slice/influencerSlice";
 
+jest.mock("../../service/InfluencerService");
 const mockStore = configureStore([]);
 
 describe("Influencer List", () => {
-  let store;
+  let appStore;
   beforeEach(() => {
-    store = mockStore({
+    appStore = mockStore({
       influencers: {
         influencers: [],
         isLoading: false,
@@ -18,12 +23,12 @@ describe("Influencer List", () => {
       },
     });
 
-    store.dispatch = jest.fn();
+    appStore.dispatch = jest.fn();
   });
 
   test("Checks the DOMs", () => {
     render(
-      <Provider store={store}>
+      <Provider store={appStore}>
         <AppTheme>
           <List />
         </AppTheme>
@@ -36,7 +41,7 @@ describe("Influencer List", () => {
 
   test("Checks the table headers", () => {
     render(
-      <Provider store={store}>
+      <Provider store={appStore}>
         <AppTheme>
           <List />
         </AppTheme>
@@ -51,19 +56,19 @@ describe("Influencer List", () => {
 
   test("Checks the application initiation dispatch", () => {
     render(
-      <Provider store={store}>
+      <Provider store={appStore}>
         <AppTheme>
           <List />
         </AppTheme>
       </Provider>
     );
 
-    expect(store.dispatch).toHaveBeenCalledTimes(0);
+    expect(appStore.dispatch).toHaveBeenCalledTimes(0);
   });
 
   test("Checks the submit dispatch", async () => {
     render(
-      <Provider store={store}>
+      <Provider store={appStore}>
         <AppTheme>
           <List />
         </AppTheme>
@@ -72,6 +77,23 @@ describe("Influencer List", () => {
 
     fireEvent.click(screen.getByText("Submit"));
 
-    expect(store.dispatch).toHaveBeenCalledTimes(1);
+    expect(appStore.dispatch).toHaveBeenCalledTimes(1);
+  });
+
+  test("Checks the getInfluencers action result", async () => {
+    render(
+      <Provider store={store}>
+        <AppTheme>
+          <List />
+        </AppTheme>
+      </Provider>
+    );
+
+    GetInfluencers.mockImplementationOnce(() => Promise.resolve(data));
+    await store.dispatch(getInfluencers());
+
+    data.forEach((item) =>
+      expect(screen.getByText(item.channel_display_name)).toBeInTheDocument()
+    );
   });
 });
