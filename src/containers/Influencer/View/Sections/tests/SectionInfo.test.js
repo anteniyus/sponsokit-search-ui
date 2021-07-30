@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { data } from "../../../../../utility/tests/TestData";
+import { data } from "../../../../../utility/testUtility/TestData";
 import SectionInfo from "../SectionInfo";
 import {
   checkConsoleSpyOnResult,
   makeSpyOnConsole,
-} from "../../../../../utility/tests/ConsoleTestUtitlity";
+} from "../../../../../utility/testUtility/ConsoleTestUtitlity";
 
 describe("Info Section", () => {
   beforeEach(() => {

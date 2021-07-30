@@ -1,5 +1,5 @@
 import influencerReducer, { getInfluencers } from "../influencerSlice";
-import data from "../../../utility/tests/TestData";
+import data from "../../../utility/testUtility/TestData";
 
 const initialState = {
   influencers: [],

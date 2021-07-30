@@ -4,11 +4,11 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import View from "../../View";
 import AppTheme from "../../../../../AppTheme";
-import { data } from "../../../../../utility/tests/TestData";
+import { data } from "../../../../../utility/testUtility/TestData";
 import {
   makeSpyOnConsole,
   checkConsoleSpyOnResult,
-} from "../../../../../utility/tests/ConsoleTestUtitlity";
+} from "../../../../../utility/testUtility/ConsoleTestUtitlity";
 import { setInfluencerViewData } from "../../../../../store/slice/InfluencerViewSlice";
 import { abbreviateNumber } from "../../../../../utility/NumberUtility";
 

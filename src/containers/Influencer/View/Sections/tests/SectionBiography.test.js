@@ -4,7 +4,7 @@ import SectionBiography from "../SectionBiography";
 import {
   checkConsoleSpyOnResult,
   makeSpyOnConsole,
-} from "../../../../../utility/tests/ConsoleTestUtitlity";
+} from "../../../../../utility/testUtility/ConsoleTestUtitlity";
 
 describe("Biography Section", () => {
   beforeEach(() => {

@@ -6,7 +6,7 @@ import AppTheme from "../../../../../AppTheme";
 import {
   checkConsoleSpyOnResult,
   makeSpyOnConsole,
-} from "../../../../../utility/tests/ConsoleTestUtitlity";
+} from "../../../../../utility/testUtility/ConsoleTestUtitlity";
 
 describe("Count Section", () => {
   const mediaCount = 100000;

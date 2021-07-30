@@ -1,5 +1,5 @@
 import reducer, { setInfluencerViewData } from "../InfluencerViewSlice";
-import { data } from "../../../utility/tests/TestData";
+import { data } from "../../../utility/testUtility/TestData";
 
 const initialState = {
   data: {},

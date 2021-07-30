@@ -2,11 +2,11 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import AppTheme from "../../../../../AppTheme";
 import SectionImage from "../SectionImage";
-import { data } from "../../../../../utility/tests/TestData";
+import { data } from "../../../../../utility/testUtility/TestData";
 import {
   checkConsoleSpyOnResult,
   makeSpyOnConsole,
-} from "../../../../../utility/tests/ConsoleTestUtitlity";
+} from "../../../../../utility/testUtility/ConsoleTestUtitlity";
 
 describe("Image Section", () => {
   beforeEach(() => {

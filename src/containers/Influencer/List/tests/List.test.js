@@ -6,7 +6,7 @@ import AppTheme from "../../../../AppTheme";
 import List from "../List";
 import store from "../../../../store/store";
 import { GetInfluencers } from "../../service/InfluencerService";
-import { data } from "../../../../utility/tests/TestData";
+import { data } from "../../../../utility/testUtility/TestData";
 import { getInfluencers } from "../../../../store/slice/influencerSlice";
 
 jest.mock("../../service/InfluencerService");
