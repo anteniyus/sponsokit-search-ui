@@ -45,8 +45,12 @@ const SectionImage = ({ mediaURL }) => {
   );
 };
 
+SectionImage.defaultProps = {
+  mediaURL: notFound,
+};
+
 SectionImage.propTypes = {
-  mediaURL: PropTypes.string.isRequired,
+  mediaURL: PropTypes.string,
 };
 
 export default SectionImage;
