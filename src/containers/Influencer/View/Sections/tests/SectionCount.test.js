@@ -15,7 +15,13 @@ describe("Count Section", () => {
 
   beforeEach(() => {
     makeSpyOnConsole();
+  });
 
+  afterEach(() => {
+    checkConsoleSpyOnResult();
+  });
+
+  test("Checks the DOMs", () => {
     render(
       <AppTheme>
         <SectionCount
@@ -25,19 +31,23 @@ describe("Count Section", () => {
         />
       </AppTheme>
     );
-  });
 
-  afterEach(() => {
-    checkConsoleSpyOnResult();
-  });
-
-  test("Checks the DOMs", () => {
     expect(screen.getByText("posts")).toBeInTheDocument();
     expect(screen.getByText("follower")).toBeInTheDocument();
     expect(screen.getByText("following")).toBeInTheDocument();
   });
 
   test("Checks the DOMs' abbreviated content", () => {
+    render(
+      <AppTheme>
+        <SectionCount
+          mediaCount={mediaCount}
+          followerCount={follower}
+          followingCount={following}
+        />
+      </AppTheme>
+    );
+
     expect(screen.getByText(abbreviateNumber(mediaCount))).toBeInTheDocument();
     expect(screen.getByText(abbreviateNumber(follower))).toBeInTheDocument();
     expect(screen.getByText(abbreviateNumber(following))).toBeInTheDocument();
